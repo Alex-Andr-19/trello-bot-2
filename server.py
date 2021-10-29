@@ -7,7 +7,7 @@ user_token = ''
 
 @app.route('/authorize', methods=['POST'])
 def authorize():
-    print(request)
+    print(json.loads(request.text)['user_token'])
     return 'success', 200
 
 @app.route('/webhook', methods=['POST','HEAD'])
