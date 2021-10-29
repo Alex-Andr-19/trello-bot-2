@@ -21,7 +21,7 @@ def webhook():
         
 
         res = {
-            'action': request.json.model.action.type,
+            'action': request.json['action']['type'],
             'comment': '',
             'board': request.json.action.board.name,
             'list': request.json.action.list.name,
