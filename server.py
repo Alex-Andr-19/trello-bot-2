@@ -23,7 +23,7 @@ def webhook():
 
         res = {
             'action': request.json.action.type,
-            'comment': ''
+            'comment': '',
             'board': request.json.action.board.name,
             'list': request.json.action.list.name,
             'author': request.json.action.display.memberCreator.username
@@ -31,19 +31,21 @@ def webhook():
 
         comment = ''
 
-        if res.action == 'updateCard':
-            
+        if res.action == 'updateCard':            
             if request.json.action.data.get('listBefore'):
                 comment = f'Вас переместил {res['author']} из листа {request.json.action.data['listBefore']['name']} в {request.json.action.data['listAfter']['name']}'
             elif request.json.action.data.get('old'):
-                comment = f'Нвазвание вашей карточки {request.json.action.data['old']} изменилось на {request.json.action.data['card']['name']}'
+                comment = f'Название вашей карточки {request.json.action.data['old']} изменилось на {request.json.action.data['card']['name']} пользователем {res['author']}'
 
         elif res.action == 'removeMemberFromCard':
-            comment = f'Вы удалены из карточки {request.json.action.data['card']['name']} пользователем {request.json.action.display['memberCreator']}'
+            comment = f'Вы удалены из карточки {request.json.action.data['card']['name']} пользователем {res['author']}'
+
         elif res.action == 'addMemberToCard':
-            comment = f'Вы добавлены в карточку {request.json.action.data['card']['name']} пользователем {request.json.action.display['memberCreator']}'
+            comment = f'Вы добавлены в карточку {request.json.action.data['card']['name']} пользователем {res['author']}'
+
         elif res.action == 'commentCard':
-            comment = f'Комментарий к вашей карточке {request.json.action.data['card']['name']}:\n{request.json.action.data['text']}\n{request.json.action.display['memberCreator']}'
+            comment = f'Комментарий к вашей карточке {request.json.action.data['card']['name']}:\n{request.json.action.data['text']}\n{res['author']}'
+
 
         res['comment'] = comment
 
