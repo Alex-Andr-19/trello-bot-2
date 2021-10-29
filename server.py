@@ -21,28 +21,28 @@ def webhook():
         '''
 
         res = {
-            'action': request.json['action']['type'],
+            'action': request.json['action']['data']['type'],
             'comment': '',
-            'board': request.json['action']['board']['name'],
-            'list': request.json['action']['list']['name'],
-            'author': request.json['action']['display']['memberCreator']['username']
+            'board': request.json['action']['data']['board']['name'],
+            'list': request.json['action']['data']['list']['name'],
+            'author': request.json['action']['data']['display']['memberCreator']['username']
         }
 
         comment = ''
 
-        if res['action'] == 'updateCard':            
+        if res['action']['data'] == 'updateCard':            
             if request.json['action']['data'].get('listBefore'):
                 comment = f"Вас переместил {res.author} из листа {request.json['action']['data']['listBefore']['name']} в {request.json['action']['data']['listAfter']['name']}"
             elif request.json['action']['data'].get('old'):
                 comment = f"Название вашей карточки {request.json['action']['data']['old']} изменилось на {request.json['action']['data']['card']['name']} пользователем {res.author}"
 
-        elif res['action'] == 'removeMemberFromCard':
+        elif res['action']['data'] == 'removeMemberFromCard':
             comment = f"Вы удалены из карточки {request.json['action']['data']['card']['name']} пользователем {res.author}"
 
-        elif res['action'] == 'addMemberToCard':
+        elif res['action']['data'] == 'addMemberToCard':
             comment = f"Вы добавлены в карточку {request.json['action']['data']['card']['name']} пользователем {res.author}"
 
-        elif res['action'] == 'commentCard':
+        elif res['action']['data'] == 'commentCard':
             comment = f"Комментарий к вашей карточке {request.json['action']['data']['card']['name']}:\n{request.json['action']['data']['text']}\n{res.author}"
 
 
