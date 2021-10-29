@@ -25,7 +25,7 @@ def webhook():
             'comment': '',
             'board': request.json['action']['data']['board']['name'],
             'list': request.json['action']['data']['list']['name'],
-            'author': request.json['action']['display']['memberCreator']['username']
+            'author': request.json['action']['memberCreator']['username']
         }
 
         comment = ''
