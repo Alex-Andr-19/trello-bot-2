@@ -48,7 +48,7 @@ def webhook():
 
 
         res['comment'] = comment
-
+        
         return res, 200
     elif request.method == 'HEAD':
         print('connect')
