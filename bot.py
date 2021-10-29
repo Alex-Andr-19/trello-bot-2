@@ -6,7 +6,6 @@ from aiogram.types import ReplyKeyboardRemove, \
 	InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 
 token = "2089522410:AAHkzYGGd3X76IBzLNP--Pp2xLIAAAZsVjM"
-print('Here')
 
 db = database.DataBase()
 db.create_tables()
@@ -47,6 +46,11 @@ def process_callback_boards_button(callback_query: CallbackQuery):
 	bot.answer_callback_query(callback_query.id)
 	db.set_user_board_data((db.get_user_token_by_tele_token(callback_query.from_user.id), data[2]))
 	bot.send_message(callback_query.from_user.id, f'Доска *{" ".join(data[1:len(data) - 1])}* успешно добавлена для отслеживания', parse_mode = 'Markdown')
+
+
+def send_info(data):
+	print(data)
+	# bot.send_message()
 
 if __name__ == '__main__':
 	bot.infinity_polling()
