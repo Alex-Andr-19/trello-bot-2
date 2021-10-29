@@ -16,6 +16,7 @@ bot = telebot.TeleBot(token)
 def auth(message):
 	bot.send_message(message.chat.id, "Добро пожаловать! Прежде чем приступить вы должны перейти по ссылке, скопировать оттуда токен и отправить мне в следующем формате! \n /token 123456789 ")
 	bot.send_message(message.chat.id, 'https://trello.com/1/authorize?expiration=1day&name=MyPersonalToken&scope=read&response_type=token&key=193119f42d583601d5095b462bde9300')
+	print(message.chat.id)
 
 @bot.message_handler(commands=['token'])
 def token_accept(message):
@@ -32,7 +33,7 @@ def token_accept(message):
 		for board in boards:
 			inline_keyboard.add(InlineKeyboardButton(board['name'], callback_data = '1%' + board['name'] + '%' + board['id']))
 
-		db.set_user_token_data((message.from_user.id, data[1]))
+		db.set_user_token_data((message.chat.id, data[1]))
 
 		bot.send_message(message.chat.id, "Вы успешно авторизовались!")
 		bot.send_message(message.chat.id, "Выберите доски для отслеживания!", reply_markup = [inline_keyboard])
