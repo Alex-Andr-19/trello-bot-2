@@ -48,4 +48,5 @@ def process_callback_boards_button(callback_query: CallbackQuery):
 	db.set_user_board_data((db.get_user_token_by_tele_token(callback_query.from_user.id), data[2]))
 	bot.send_message(callback_query.from_user.id, f'Доска *{" ".join(data[1:len(data) - 1])}* успешно добавлена для отслеживания', parse_mode = 'Markdown')
 
-bot.infinity_polling()
+if __name__ = '__main__':
+	bot.infinity_polling()
