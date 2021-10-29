@@ -51,7 +51,7 @@ def process_callback_boards_button(callback_query: CallbackQuery):
 
 def send_info(data):
 	print(data)
-	# bot.send_message()
+	bot.send_message(465696946, 'qwerty_12345')
 
 if __name__ == '__main__':
 	bot.infinity_polling()
