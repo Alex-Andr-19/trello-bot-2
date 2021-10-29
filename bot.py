@@ -6,6 +6,7 @@ from aiogram.types import ReplyKeyboardRemove, \
 	InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 
 token = "2089522410:AAHkzYGGd3X76IBzLNP--Pp2xLIAAAZsVjM"
+print('Here')
 
 db = database.DataBase()
 db.create_tables()
