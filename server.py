@@ -33,18 +33,18 @@ def webhook():
 
         if res.action == 'updateCard':            
             if request.json.action.data.get('listBefore'):
-                comment = f'Вас переместил {res['author']} из листа {request.json.action.data['listBefore']['name']} в {request.json.action.data['listAfter']['name']}'
+                comment = f"Вас переместил {res['author']} из листа {request.json.action.data['listBefore']['name']} в {request.json.action.data['listAfter']['name']}"
             elif request.json.action.data.get('old'):
-                comment = f'Название вашей карточки {request.json.action.data['old']} изменилось на {request.json.action.data['card']['name']} пользователем {res['author']}'
+                comment = f"Название вашей карточки {request.json.action.data['old']} изменилось на {request.json.action.data['card']['name']} пользователем {res['author']}"
 
         elif res.action == 'removeMemberFromCard':
-            comment = f'Вы удалены из карточки {request.json.action.data['card']['name']} пользователем {res['author']}'
+            comment = f"Вы удалены из карточки {request.json.action.data['card']['name']} пользователем {res['author']}"
 
         elif res.action == 'addMemberToCard':
-            comment = f'Вы добавлены в карточку {request.json.action.data['card']['name']} пользователем {res['author']}'
+            comment = f"Вы добавлены в карточку {request.json.action.data['card']['name']} пользователем {res['author']}"
 
         elif res.action == 'commentCard':
-            comment = f'Комментарий к вашей карточке {request.json.action.data['card']['name']}:\n{request.json.action.data['text']}\n{res['author']}'
+            comment = f"Комментарий к вашей карточке {request.json.action.data['card']['name']}:\n{request.json.action.data['text']}\n{res['author']}"
 
 
         res['comment'] = comment
