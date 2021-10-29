@@ -2,6 +2,8 @@ from flask import Flask, request, abort
 import json
 import bot
 
+print(bot.token)
+
 
 DEV_KEY = '193119f42d583601d5095b462bde9300'
 
