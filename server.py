@@ -2,12 +2,12 @@ from flask import Flask, request, abort
 
 app = Flask(__name__)
 
-@app.route('/webhook', methods=['POST','GET'])
+@app.route('/webhook', methods=['POST','HEAD'])
 def webhook():
     if request.method == 'POST':
         print(request.json)
         return 'success', 200
-    elif request.method == 'GET':
+    elif request.method == 'HEAD':
         print('connect')
         return 'success', 200
 if __name__ == '__main__':
