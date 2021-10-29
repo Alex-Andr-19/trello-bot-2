@@ -11,14 +11,6 @@ user_token = ''
 @app.route('/webhook', methods=['POST','HEAD'])
 def webhook():
     if request.method == 'POST':
-        '''
-        print(json.dumps(
-            request.json,
-            sort_keys=True, 
-            separators=(",", ": "), 
-            ensure_ascii=False)
-        )
-        '''
 
         res = {
             'action': request.json['action']['type'],
