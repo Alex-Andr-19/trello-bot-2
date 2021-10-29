@@ -3,16 +3,36 @@ import json
 
 app = Flask(__name__)
 
+user_token = ''
+
+@app.route('/authorize', methods=['POST'])
+def authorize():
+    print(request)
+
 @app.route('/webhook', methods=['POST','HEAD'])
 def webhook():
     if request.method == 'POST':
         print(json.dumps(
             request.json,
             sort_keys=True, 
-            indent=4, 
             separators=(",", ": "), 
             ensure_ascii=False)
         )
+
+        if request.json.action.type == 'removeMemberFromCard':
+            return 'removeMemberFromCard', 200
+        elif request.json.action.type == 'updateCard':
+            return 'updateCard', 200
+        elif request.json.action.type == 'addMemberToCard':
+            return 'addMemberToCard', 200
+        elif request.json.action.type == 'commentCard':
+            return 'commentCard', 200
+        elif request.json.action.type == 'updateCard':
+            return 'updateCard', 200
+
+
+
+
         return 'success', 200
     elif request.method == 'HEAD':
         print('connect')
